@@ -1,5 +1,7 @@
 <template>
   <div id="app">
+    <p>{{ $t("messages.hello") }} ({{ $i18n.locale }})</p>
+    <button v-for="(lang, index) in listLang" :key="index" @click="changeLang(lang)">{{ lang }}</button>
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
@@ -8,9 +10,29 @@
   </div>
 </template>
 
+<script>
+import { loadLanguageAsync, languagesAvailable, navigatorCloseLanguage } from '@/i18n'
+
+export default {
+  data: function () {
+    return {
+      listLang: languagesAvailable
+    }
+  },
+  methods: {
+    changeLang: function (lang) {
+      loadLanguageAsync(lang)
+    }
+  },
+  created: function () {
+    navigatorCloseLanguage()
+  }
+}
+</script>
+
 <style lang="scss">
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
