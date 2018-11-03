@@ -10,7 +10,7 @@ export const i18n = new VueI18n({
   messages: { 'en-US': messages }
 })
 
-const loadedLanguages = ['en-US'] // our default language that is preloaded
+const loadedLanguages = ['en-US']
 
 export const languagesAvailable = ['en-US', 'fr', 'de']
 
